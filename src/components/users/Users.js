@@ -7,15 +7,6 @@ class Users extends Component {
 
   componentDidMount() {
     this.props.fetchUsers();
-    // this.setState({ loading: true });
-    // try {
-    //   const { data } = await axios.get(
-    //     'http://jsonplaceholder.typicode.com/users',
-    //   );
-    //   this.setState({ users: data, loading: false });
-    // } catch (error) {
-    //   this.setState({ error, loading: false });
-    // }
   }
 
   // rows = () =>
@@ -28,7 +19,6 @@ class Users extends Component {
   //   ));
 
   render() {
-    console.log(this.props);
     return (
       <div className='margin'>
         {/* {this.state.loading && <span>Loading..</span>} */}
