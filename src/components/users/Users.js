@@ -1,13 +1,27 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchUsers } from '../../actions/index';
+import Spinner from '../Spinner';
 
 class Users extends Component {
   componentDidMount() {
     this.props.fetchUsers();
   }
 
-  rows = () =>
+  renderContent = () => (
+    <table className='table'>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Website</th>
+        </tr>
+      </thead>
+      <tbody>{this.renderRows()}</tbody>
+    </table>
+  );
+
+  renderRows = () =>
     this.props.users.map(user => (
       <tr key={user.id}>
         <td>{user.name}</td>
@@ -19,23 +33,19 @@ class Users extends Component {
   render() {
     return (
       <div className='margin'>
-        {/* {this.state.loading && <span>Loading..</span>} */}
-        <table className='table'>
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Email</th>
-              <th>Website</th>
-            </tr>
-          </thead>
-          <tbody>{this.rows()}</tbody>
-        </table>
+        {this.props.error && <div>{this.props.error}</div>}
+        {this.props.loading && <Spinner />}
+        {this.renderContent()}
       </div>
     );
   }
 }
 function mapStateToProps(state) {
-  return state.users;
+  return {
+    users: state.user.users,
+    loading: state.user.loading,
+    error: state.user.error,
+  };
 }
 export default connect(
   mapStateToProps,
