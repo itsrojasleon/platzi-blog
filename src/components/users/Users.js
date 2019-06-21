@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-class App extends Component {
+class Users extends Component {
   state = { users: [], loading: false, error: false };
 
   async componentDidMount() {
@@ -28,6 +28,7 @@ class App extends Component {
   render() {
     return (
       <div className='margin'>
+        {this.state.loading && <span>Loading..</span>}
         <table className='table'>
           <thead>
             <tr>
@@ -36,11 +37,6 @@ class App extends Component {
               <th>Website</th>
             </tr>
           </thead>
-          {this.state.loading && (
-            <tbody>
-              <tr>Loading</tr>
-            </tbody>
-          )}
           {!this.state.loading && <tbody>{this.rows()}</tbody>}
         </table>
       </div>
@@ -48,4 +44,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default Users;
