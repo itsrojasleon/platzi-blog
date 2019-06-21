@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { fetchUsers } from '../../actions/index';
 
 class Users extends Component {
   state = { users: [], loading: false, error: false };
 
-  async componentDidMount() {
+  componentDidMount() {
+    this.props.fetchUsers();
     // this.setState({ loading: true });
     // try {
     //   const { data } = await axios.get(
@@ -47,4 +49,7 @@ class Users extends Component {
 function mapStateToProps(state) {
   return state.users;
 }
-export default connect(mapStateToProps)(Users);
+export default connect(
+  mapStateToProps,
+  { fetchUsers },
+)(Users);
