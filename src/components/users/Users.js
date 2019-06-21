@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchUsers } from '../../actions/index';
 import Spinner from '../Spinner';
+import Fatal from '../Fatal';
 
 class Users extends Component {
   componentDidMount() {
@@ -33,7 +34,7 @@ class Users extends Component {
   render() {
     return (
       <div className='margin'>
-        {this.props.error && <div>{this.props.error}</div>}
+        {this.props.error && <Fatal msg={this.props.error} />}
         {this.props.loading && <Spinner />}
         {this.renderContent()}
       </div>
