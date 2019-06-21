@@ -3,20 +3,18 @@ import { connect } from 'react-redux';
 import { fetchUsers } from '../../actions/index';
 
 class Users extends Component {
-  state = { users: [], loading: false, error: false };
-
   componentDidMount() {
     this.props.fetchUsers();
   }
 
-  // rows = () =>
-  //   this.state.users.map(user => (
-  //     <tr key={user.id}>
-  //       <td>{user.name}</td>
-  //       <td>{user.email}</td>
-  //       <td>{user.website}</td>
-  //     </tr>
-  //   ));
+  rows = () =>
+    this.props.users.map(user => (
+      <tr key={user.id}>
+        <td>{user.name}</td>
+        <td>{user.email}</td>
+        <td>{user.website}</td>
+      </tr>
+    ));
 
   render() {
     return (
@@ -30,7 +28,7 @@ class Users extends Component {
               <th>Website</th>
             </tr>
           </thead>
-          {/* {!this.state.loading && <tbody>{this.rows()}</tbody>} */}
+          <tbody>{this.rows()}</tbody>
         </table>
       </div>
     );
