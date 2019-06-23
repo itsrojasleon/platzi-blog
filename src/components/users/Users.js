@@ -3,40 +3,19 @@ import { connect } from 'react-redux';
 import { fetchUsers } from '../../actions/index';
 import Spinner from '../Spinner';
 import Fatal from '../Fatal';
+import UsersTable from './UsersTable';
 
 class Users extends Component {
   componentDidMount() {
     this.props.fetchUsers();
   }
 
-  renderContent = () => (
-    <table className='table'>
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Email</th>
-          <th>Website</th>
-        </tr>
-      </thead>
-      <tbody>{this.renderRows()}</tbody>
-    </table>
-  );
-
-  renderRows = () =>
-    this.props.users.map(user => (
-      <tr key={user.id}>
-        <td>{user.name}</td>
-        <td>{user.email}</td>
-        <td>{user.website}</td>
-      </tr>
-    ));
-
   render() {
     return (
       <div className='margin'>
         {this.props.error && <Fatal msg={this.props.error} />}
         {this.props.loading && <Spinner />}
-        {this.renderContent()}
+        <UsersTable users={this.props.users} />
       </div>
     );
   }
