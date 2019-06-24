@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchUsers } from '../../actions/index';
+import { fetchUsers, fetchPosts } from '../../actions/index';
 
-class Publications extends Component {
+class Posts extends Component {
   componentDidMount() {
     if (!this.props.users.length) {
       this.props.fetchUsers();
@@ -15,9 +15,10 @@ class Publications extends Component {
 function mapStateToProps(state) {
   return {
     users: state.user.users,
+    posts: state.publication.posts,
   };
 }
 export default connect(
   mapStateToProps,
-  { fetchUsers },
-)(Publications);
+  { fetchUsers, fetchPosts },
+)(Posts);
