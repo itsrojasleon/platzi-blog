@@ -32,7 +32,6 @@ class Posts extends Component {
   }
 
   render() {
-    console.log(this.props.match.params.id);
     return (
       <div className='margin'>
         {this.renderUser()}
