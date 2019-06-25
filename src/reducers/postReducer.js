@@ -4,15 +4,19 @@ const INITIAL_STATE = {
   posts: [],
   loading: false,
   error: '',
+  ids: [],
 };
 
 export default function postReducer(state = INITIAL_STATE, action) {
   switch (action.type) {
     case FETCH_POSTS:
+      // console.log(action.payload);
+      const validate = action.payload[0].userId;
       return {
         ...state,
         posts: [...state.posts, action.payload],
         loading: false,
+        ids: [...state.ids, validate],
       };
     case LOADING_POSTS:
       return {

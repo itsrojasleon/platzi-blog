@@ -10,6 +10,9 @@ class Posts extends Component {
     this.props.fetchPosts(this.props.match.params.id);
   }
   render() {
+    // console.log(this.props.ids);
+    const a = this.props.posts.map(a => a[0]);
+    console.log(a);
     return <div>{this.props.match.params.id}</div>;
   }
 }
@@ -17,6 +20,7 @@ function mapStateToProps(state) {
   return {
     users: state.user.users,
     posts: state.post.posts,
+    ids: state.post.ids,
   };
 }
 export default connect(
