@@ -3,10 +3,11 @@ import { connect } from 'react-redux';
 import { fetchUsers, fetchPosts } from '../../actions/index';
 
 class Posts extends Component {
-  componentDidMount() {
+  async componentDidMount() {
     if (!this.props.users.length) {
-      this.props.fetchUsers();
+      await this.props.fetchUsers();
     }
+    this.props.fetchPosts(this.props.match.params.id);
   }
   render() {
     return <div>{this.props.match.params.id}</div>;

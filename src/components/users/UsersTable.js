@@ -9,7 +9,7 @@ function UsersTable(props) {
         <td>{user.email}</td>
         <td>{user.website}</td>
         <td>
-          <Link to={`/posts/${i}`}>
+          <Link to={`/posts/${i + 1}`}>
             <i className='fas fa-eye' />
           </Link>
         </td>
