@@ -33,15 +33,13 @@ export function fetchPosts(id) {
     try {
       // Sometimes I need posts by user
       // But also I need all of the posts (Probably not)
-      const param = id ? `posts?userId=${id}` : 'posts';
+      // const param = id ? `posts?userId=${id}` : 'posts';
+      // But, right now I don't need it.
 
-      const { data } = await axios.get(`${BASE_URL}/${param}`);
+      const { data } = await axios.get(`${BASE_URL}/posts?userId=${id}`);
       dispatch({ type: FETCH_POSTS, payload: data });
     } catch (error) {
-      dispatch({
-        type: ERROR_POSTS,
-        payload: error.message,
-      });
+      dispatch({ type: ERROR_POSTS, payload: error.message });
     }
   };
 }

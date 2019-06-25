@@ -19,7 +19,7 @@ class Posts extends Component {
     if (this.props.errorUsers) {
       return <Fatal msg={this.props.errorUsers} />;
     }
-    return <h2>{this.props.users[this.props.match.params.id].name}</h2>;
+    return <h2>{this.props.users[this.props.match.params.id - 1].name}</h2>;
   }
   renderPosts() {
     if (!this.props.posts.length || this.props.loadingPosts) {
@@ -32,6 +32,7 @@ class Posts extends Component {
   }
 
   render() {
+    console.log(this.props.match.params.id);
     return (
       <div className='margin'>
         {this.renderUser()}
