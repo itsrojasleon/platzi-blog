@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { fetchUsers, fetchPosts } from '../../actions/index';
 import Spinner from '../Spinner';
 import Fatal from '../Fatal';
+import PostDetails from './PostDetails';
 
 class Posts extends Component {
   async componentDidMount() {
@@ -28,7 +29,9 @@ class Posts extends Component {
     if (this.props.errorPosts) {
       return <Fatal msg={this.props.errorPosts} />;
     }
-    return this.props.posts.map(post => <div key={post.id}>{post.title}</div>);
+    return this.props.posts.map(post => (
+      <PostDetails key={post.id} {...post} />
+    ));
   }
 
   render() {

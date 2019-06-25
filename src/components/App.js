@@ -1,10 +1,10 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Navbar from './Navbar';
-import Users from './users/Users';
-import Posts from './posts/Posts';
+import User from './user/User';
+import Post from './post/Post';
 
-function Tasks() {
+function Task() {
   return <div>Tasks</div>;
 }
 
@@ -13,9 +13,9 @@ function App() {
     <BrowserRouter>
       <Navbar />
       <Switch>
-        <Route exact path='/' component={Users} />
-        <Route path='/tasks' component={Tasks} />
-        <Route path='/posts/:id' component={Posts} />
+        <Route exact path='/' component={User} />
+        <Route path='/tasks' component={Task} />
+        <Route path='/posts/:id' component={Post} />
       </Switch>
     </BrowserRouter>
   );

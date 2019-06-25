@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { fetchUsers } from '../../actions/index';
 import Spinner from '../Spinner';
 import Fatal from '../Fatal';
-import UsersTable from './UsersTable';
+import UsersTable from './UserTable';
 
 class Users extends Component {
   componentDidMount() {
