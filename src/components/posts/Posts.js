@@ -15,7 +15,7 @@ class Posts extends Component {
 function mapStateToProps(state) {
   return {
     users: state.user.users,
-    posts: state.publication.posts,
+    posts: state.post.posts,
   };
 }
 export default connect(

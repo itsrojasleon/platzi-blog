@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Navbar from './Navbar';
 import Users from './users/Users';
-import Publications from './publications/Publications';
+import Posts from './posts/Posts';
 
 function Tasks() {
   return <div>Tasks</div>;
@@ -15,7 +15,7 @@ function App() {
       <Switch>
         <Route exact path='/' component={Users} />
         <Route path='/tasks' component={Tasks} />
-        <Route path='/publications/:id' component={Publications} />
+        <Route path='/posts/:id' component={Posts} />
       </Switch>
     </BrowserRouter>
   );
