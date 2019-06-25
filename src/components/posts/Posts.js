@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchUsers, fetchPosts } from '../../actions/index';
+import Spinner from '../Spinner';
+import Fatal from '../Fatal';
 
 class Posts extends Component {
   async componentDidMount() {
@@ -9,18 +11,27 @@ class Posts extends Component {
     }
     this.props.fetchPosts(this.props.match.params.id);
   }
+
+  renderUser = () => {
+    if (!this.props.users.length || this.props.loading) {
+      return <Spinner />;
+    }
+    if (this.props.error) {
+      return <Fatal msg={this.props.error} />;
+    }
+    return <div>{this.props.users[this.props.match.params.id].name}</div>;
+  };
+
   render() {
-    // console.log(this.props.ids);
-    const a = this.props.posts.map(a => a[0]);
-    console.log(a);
-    return <div>{this.props.match.params.id}</div>;
+    return <div>{this.renderUser()}</div>;
   }
 }
 function mapStateToProps(state) {
   return {
     users: state.user.users,
     posts: state.post.posts,
-    ids: state.post.ids,
+    loading: state.user.loading,
+    error: state.user.error,
   };
 }
 export default connect(
