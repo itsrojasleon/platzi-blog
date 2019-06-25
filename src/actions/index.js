@@ -1,12 +1,19 @@
 import axios from 'axios';
-import { FETCH_USERS, FETCH_POSTS, FETCH_POST, LOADING, ERROR } from './types';
+import {
+  FETCH_USERS,
+  LOADING_USERS,
+  ERROR_USERS,
+  FETCH_POSTS,
+  LOADING_POSTS,
+  ERROR_POSTS,
+} from './types';
 
 const BASE_URL = 'http://jsonplaceholder.typicode.com';
 
 // Actions for users
 export function fetchUsers() {
   return async function(dispatch) {
-    dispatch({ type: LOADING });
+    dispatch({ type: LOADING_USERS });
     try {
       const { data } = await axios.get(`${BASE_URL}/users`);
       dispatch({
@@ -14,7 +21,7 @@ export function fetchUsers() {
         payload: data,
       });
     } catch (error) {
-      dispatch({ type: ERROR, payload: error.message });
+      dispatch({ type: ERROR_USERS, payload: error.message });
     }
   };
 }
@@ -22,7 +29,7 @@ export function fetchUsers() {
 // Actions for publications
 export function fetchPosts(id) {
   return async function(dispatch) {
-    dispatch({ type: LOADING });
+    dispatch({ type: LOADING_POSTS });
     try {
       // Sometimes I need posts by user
       // But also I need all of the posts
@@ -32,21 +39,9 @@ export function fetchPosts(id) {
       dispatch({ type: FETCH_POSTS, payload: data });
     } catch (error) {
       dispatch({
-        type: ERROR,
+        type: ERROR_POSTS,
         payload: error.message,
       });
     }
   };
 }
-
-// export function fetchPost() {
-//   return async function(dispatch) {
-//     try {
-//       const { data } = await axios.get(`${BASE_URL}/posts?userId=1`);
-
-//       dispatch({ TYPE: FETCH_POST, paylaod: data });
-//     } catch (error) {
-//       console.log('Error');
-//     }
-//   };
-// }

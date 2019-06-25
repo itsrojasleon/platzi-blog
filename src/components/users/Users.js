@@ -7,7 +7,9 @@ import UsersTable from './UsersTable';
 
 class Users extends Component {
   componentDidMount() {
-    this.props.fetchUsers();
+    if (!this.props.users.length) {
+      this.props.fetchUsers();
+    }
   }
 
   render() {

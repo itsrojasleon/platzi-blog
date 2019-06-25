@@ -1,4 +1,4 @@
-import { FETCH_USERS, ERROR, LOADING } from '../actions/types';
+import { FETCH_USERS, ERROR_USERS, LOADING_USERS } from '../actions/types';
 
 const INITIAL_STATE = {
   loading: false,
@@ -8,12 +8,12 @@ const INITIAL_STATE = {
 
 export default function userReducer(state = INITIAL_STATE, action) {
   switch (action.type) {
-    case LOADING:
+    case LOADING_USERS:
       return {
         ...state,
         loading: true,
       };
-    case ERROR:
+    case ERROR_USERS:
       return {
         ...state,
         loading: false,

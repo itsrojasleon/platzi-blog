@@ -1,4 +1,4 @@
-import { FETCH_POSTS, LOADING, ERROR } from '../actions/types';
+import { FETCH_POSTS, LOADING_POSTS, ERROR_POSTS } from '../actions/types';
 
 const INITIAL_STATE = {
   posts: [],
@@ -11,15 +11,15 @@ export default function postReducer(state = INITIAL_STATE, action) {
     case FETCH_POSTS:
       return {
         ...state,
-        posts: action.payload,
+        posts: [...state.posts, action.payload],
         loading: false,
       };
-    case LOADING:
+    case LOADING_POSTS:
       return {
         ...state,
         loading: true,
       };
-    case ERROR:
+    case ERROR_POSTS:
       return {
         ...state,
         error: action.payload,
