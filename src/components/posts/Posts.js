@@ -12,26 +12,42 @@ class Posts extends Component {
     this.props.fetchPosts(this.props.match.params.id);
   }
 
-  renderUser = () => {
-    if (!this.props.users.length || this.props.loading) {
+  renderUser() {
+    if (!this.props.users.length || this.props.loadingUsers) {
       return <Spinner />;
     }
-    if (this.props.error) {
-      return <Fatal msg={this.props.error} />;
+    if (this.props.errorUsers) {
+      return <Fatal msg={this.props.errorUsers} />;
     }
-    return <div>{this.props.users[this.props.match.params.id].name}</div>;
-  };
+    return <h2>{this.props.users[this.props.match.params.id].name}</h2>;
+  }
+  renderPosts() {
+    if (!this.props.posts.length || this.props.loadingPosts) {
+      return <Spinner />;
+    }
+    if (this.props.errorPosts) {
+      return <Fatal msg={this.props.errorPosts} />;
+    }
+    return this.props.posts.map(post => <div key={post.id}>{post.title}</div>);
+  }
 
   render() {
-    return <div>{this.renderUser()}</div>;
+    return (
+      <div className='margin'>
+        {this.renderUser()}
+        {this.renderPosts()}
+      </div>
+    );
   }
 }
 function mapStateToProps(state) {
   return {
     users: state.user.users,
     posts: state.post.posts,
-    loading: state.user.loading,
-    error: state.user.error,
+    loadingUsers: state.user.loading,
+    errorUsers: state.user.error,
+    loadingPosts: state.user.loading,
+    errorPosts: state.user.error,
   };
 }
 export default connect(

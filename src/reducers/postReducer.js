@@ -11,7 +11,7 @@ export default function postReducer(state = INITIAL_STATE, action) {
     case FETCH_POSTS:
       return {
         ...state,
-        posts: state.posts.concat(action.payload),
+        posts: action.payload,
         loading: false,
       };
     case LOADING_POSTS:

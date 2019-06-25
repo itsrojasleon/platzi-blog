@@ -32,7 +32,7 @@ export function fetchPosts(id) {
     dispatch({ type: LOADING_POSTS });
     try {
       // Sometimes I need posts by user
-      // But also I need all of the posts
+      // But also I need all of the posts (Probably not)
       const param = id ? `posts?userId=${id}` : 'posts';
 
       const { data } = await axios.get(`${BASE_URL}/${param}`);
