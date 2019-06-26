@@ -6,6 +6,9 @@ import {
   FETCH_POSTS,
   LOADING_POSTS,
   ERROR_POSTS,
+  FETCH_COMMENTS,
+  LOADING_COMMENTS,
+  ERROR_COMMENTS,
 } from './types';
 
 const BASE_URL = 'http://jsonplaceholder.typicode.com';
@@ -40,6 +43,20 @@ export function fetchPosts(id) {
       dispatch({ type: FETCH_POSTS, payload: data });
     } catch (error) {
       dispatch({ type: ERROR_POSTS, payload: error.message });
+    }
+  };
+}
+
+// Actions for comments
+export function fetchComments(id) {
+  return async function(dispatch) {
+    dispatch({ type: LOADING_COMMENTS });
+
+    try {
+      const { data } = await axios.get(`${BASE_URL}/comments?postId=${id}`);
+      dispatch({ type: FETCH_COMMENTS, payload: data });
+    } catch (error) {
+      dispatch({ type: ERROR_COMMENTS, payload: error.message });
     }
   };
 }
