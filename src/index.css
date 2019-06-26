@@ -9,6 +9,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: rgb(240, 240, 240);
 }
 
 code {
@@ -77,6 +78,23 @@ code {
   }
 }
 /* Fatal */
-.rojo {
+.red {
   color: red;
+}
+
+/* PostDetails */
+.post {
+  background: #fff;
+  padding: 10px;
+  margin: 10px 0 10px 0;
+  border-radius: 4px;
+}
+.title {
+  font-size: 15px;
+  font-weight: bold;
+  color: rgb(50, 50, 50);
+  margin-bottom: 5px;
+}
+.body {
+  color: rgb(100, 100, 100);
 }

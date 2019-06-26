@@ -2,9 +2,9 @@ import React from 'react';
 
 function PostDetails(props) {
   return (
-    <div>
-      <div style={{ color: 'red' }}>{props.title}</div>
-      <div>{props.body}</div>
+    <div className='post'>
+      <div className='title'>{props.title}</div>
+      <div className='body'>{props.body}</div>
     </div>
   );
 }
