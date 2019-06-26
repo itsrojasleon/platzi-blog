@@ -1,13 +1,21 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Comment from '../comment/Comment';
 
-function PostDetails(props) {
-  return (
-    <div className='post'>
-      <div className='title'>{props.title}</div>
-      <div className='body'>{props.body}</div>
-      <Comment id={props.id} />
-    </div>
-  );
+class PostDetails extends Component {
+  state = {
+    open: false,
+  };
+  toggleOpen = () => {
+    this.setState({ open: !this.state.open });
+  };
+  render() {
+    return (
+      <div onClick={this.toggleOpen} className='post'>
+        <div className='title'>{this.props.title}</div>
+        <div className='body'>{this.props.body}</div>
+        {this.state.open && <Comment id={this.props.id} />}
+      </div>
+    );
+  }
 }
 export default PostDetails;
