@@ -4,6 +4,7 @@ import {
   ERROR_TODOS,
   UPDATE_USER_ID,
   UPDATE_TITLE,
+  POST_TODO,
 } from '../actions/types';
 
 const INITIAL_STATE = {
@@ -43,6 +44,13 @@ export default function todoReducer(state = INITIAL_STATE, action) {
       return {
         ...state,
         title: action.payload,
+      };
+    case POST_TODO:
+      return {
+        ...state,
+        todos: {},
+        loading: false,
+        error: '',
       };
     default:
       return state;

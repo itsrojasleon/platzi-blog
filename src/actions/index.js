@@ -14,6 +14,7 @@ import {
   ERROR_TODOS,
   UPDATE_USER_ID,
   UPDATE_TITLE,
+  POST_TODO,
 } from './types';
 
 const BASE_URL = 'http://jsonplaceholder.typicode.com';
@@ -98,5 +99,19 @@ export function updateUserId(userId) {
 export function updateTitle(title) {
   return function(dispatch) {
     dispatch({ type: UPDATE_TITLE, payload: title });
+  };
+}
+
+export function postTodo(newTodo) {
+  return async function(dispatch) {
+    // dispatch({ type: LOADING });
+
+    try {
+      const { data } = await axios.post(`${BASE_URL}/todos`, newTodo);
+      console.log(data);
+      dispatch({ type: POST_TODO });
+    } catch (error) {
+      //dispatch({ type: ERROR_TODOS_POST, payload: error.message });
+    }
   };
 }

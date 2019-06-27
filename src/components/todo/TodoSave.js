@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { updateUserId, updateTitle } from '../../actions/index';
+import { updateUserId, updateTitle, postTodo } from '../../actions/index';
 
 class TodoSave extends Component {
   changeUserId = e => {
@@ -8,6 +8,14 @@ class TodoSave extends Component {
   };
   changeTitle = e => {
     this.props.updateTitle(e.target.value);
+  };
+  handleSave = () => {
+    const newTodo = {
+      userId: this.props.userId,
+      title: this.props.title,
+      completed: false,
+    };
+    this.props.postTodo(newTodo);
   };
   render() {
     return (
@@ -28,7 +36,7 @@ class TodoSave extends Component {
             onChange={this.changeTitle}
           />
           <br />
-          <button>Save</button>
+          <button onClick={this.handleSave}>Save</button>
         </div>
       </div>
     );
@@ -42,5 +50,5 @@ function mapStateToProps(state) {
 }
 export default connect(
   mapStateToProps,
-  { updateUserId, updateTitle },
+  { updateUserId, updateTitle, postTodo },
 )(TodoSave);

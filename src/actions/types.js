@@ -21,3 +21,4 @@ export const LOADING_TODOS = 'LOADING_TODOS';
 export const ERROR_TODOS = 'ERROR_TODOS';
 export const UPDATE_USER_ID = 'UPDATE_USER_ID';
 export const UPDATE_TITLE = 'UPDATE_TITLE';
+export const POST_TODO = 'POST_TODO';
