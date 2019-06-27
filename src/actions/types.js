@@ -19,3 +19,5 @@ export const ERROR_COMMENTS = 'ERROR_COMMENTS';
 export const FETCH_TODOS = 'FETCH_TODOS';
 export const LOADING_TODOS = 'LOADING_TODOS';
 export const ERROR_TODOS = 'ERROR_TODOS';
+export const UPDATE_USER_ID = 'UPDATE_USER_ID';
+export const UPDATE_TITLE = 'UPDATE_TITLE';

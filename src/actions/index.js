@@ -12,6 +12,8 @@ import {
   FETCH_TODOS,
   LOADING_TODOS,
   ERROR_TODOS,
+  UPDATE_USER_ID,
+  UPDATE_TITLE,
 } from './types';
 
 const BASE_URL = 'http://jsonplaceholder.typicode.com';
@@ -85,5 +87,16 @@ export function fetchTodos() {
     } catch (error) {
       dispatch({ type: ERROR_TODOS, payload: error.message });
     }
+  };
+}
+
+export function updateUserId(userId) {
+  return function(dispatch) {
+    dispatch({ type: UPDATE_USER_ID, payload: userId });
+  };
+}
+export function updateTitle(title) {
+  return function(dispatch) {
+    dispatch({ type: UPDATE_TITLE, payload: title });
   };
 }
