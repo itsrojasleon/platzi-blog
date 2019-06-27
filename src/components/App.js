@@ -3,10 +3,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Navbar from './Navbar';
 import User from './user/User';
 import Post from './post/Post';
-
-function Task() {
-  return <div>Tasks</div>;
-}
+import Task from './todo/Todo';
 
 function App() {
   return (

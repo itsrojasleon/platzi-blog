@@ -14,3 +14,8 @@ export const ERROR_POSTS = 'ERROR_POSTS';
 export const FETCH_COMMENTS = 'FETCH_COMMENTS';
 export const LOADING_COMMENTS = 'LOADING_COMMENTS';
 export const ERROR_COMMENTS = 'ERROR_COMMENTS';
+
+// Actions for todos
+export const FETCH_TODOS = 'FETCH_TODOS';
+export const LOADING_TODOS = 'LOADING_TODOS';
+export const ERROR_TODOS = 'ERROR_TODOS';
