@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { fetchTodos } from '../../actions';
 import Spinner from '../Spinner';
 import Fatal from '../Fatal';
@@ -37,7 +38,14 @@ class Todo extends Component {
     ));
   }
   render() {
-    return <div>{this.renderTodos()}</div>;
+    return (
+      <div>
+        <button>
+          <Link to='/todos/save'>Save</Link>
+        </button>
+        {this.renderTodos()}
+      </div>
+    );
   }
 }
 function mapStateToProps(state) {
