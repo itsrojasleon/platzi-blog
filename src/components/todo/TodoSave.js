@@ -17,7 +17,16 @@ class TodoSave extends Component {
     };
     this.props.postTodo(newTodo);
   };
+  disable = () => {
+    const { userId, title } = this.props;
+    if (!userId || !title) {
+      return true;
+    }
+    return false;
+  };
+
   render() {
+    const { userId, title } = this.props;
     return (
       <div>
         <h1>Save Todo</h1>
@@ -36,7 +45,12 @@ class TodoSave extends Component {
             onChange={this.changeTitle}
           />
           <br />
-          <button onClick={this.handleSave}>Save</button>
+          <button
+            onClick={this.handleSave}
+            disabled={!userId || !title ? true : false}
+          >
+            Save
+          </button>
         </div>
       </div>
     );
