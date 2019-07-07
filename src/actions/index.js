@@ -9,6 +9,12 @@ import {
   FETCH_COMMENTS,
   LOADING_COMMENTS,
   ERROR_COMMENTS,
+  FETCH_TODOS,
+  LOADING_TODOS,
+  ERROR_TODOS,
+  UPDATE_USER_ID,
+  UPDATE_TITLE,
+  POST_TODO,
 } from './types';
 
 const BASE_URL = 'http://jsonplaceholder.typicode.com';
@@ -29,7 +35,7 @@ export function fetchUsers() {
   };
 }
 
-// Actions for publications
+// Action for publications
 export function fetchPosts(id) {
   return async function(dispatch) {
     dispatch({ type: LOADING_POSTS });
@@ -47,7 +53,7 @@ export function fetchPosts(id) {
   };
 }
 
-// Actions for comments
+// Action for comments
 export function fetchComments(id) {
   return async function(dispatch) {
     dispatch({ type: LOADING_COMMENTS });
@@ -57,6 +63,55 @@ export function fetchComments(id) {
       dispatch({ type: FETCH_COMMENTS, payload: data });
     } catch (error) {
       dispatch({ type: ERROR_COMMENTS, payload: error.message });
+    }
+  };
+}
+
+// Action for todos
+export function fetchTodos() {
+  return async function(dispatch) {
+    dispatch({ type: LOADING_TODOS });
+
+    try {
+      const { data } = await axios.get(`${BASE_URL}/todos`);
+
+      const formattedData = {};
+      data.map(todo => {
+        formattedData[todo.userId] = {
+          ...formattedData[todo.userId],
+          [todo.id]: {
+            ...todo,
+          },
+        };
+      });
+      dispatch({ type: FETCH_TODOS, payload: formattedData });
+    } catch (error) {
+      dispatch({ type: ERROR_TODOS, payload: error.message });
+    }
+  };
+}
+
+export function updateUserId(userId) {
+  return function(dispatch) {
+    dispatch({ type: UPDATE_USER_ID, payload: userId });
+  };
+}
+export function updateTitle(title) {
+  return function(dispatch) {
+    dispatch({ type: UPDATE_TITLE, payload: title });
+  };
+}
+
+export function postTodo(newTodo) {
+  return async function(dispatch) {
+    // dispatch({ type: LOADING });
+
+    try {
+      const { data } = await axios.post(`${BASE_URL}/todos`, newTodo);
+      console.log(data);
+      dispatch({ type: POST_TODO });
+    } catch (error) {
+      //dispatch({ type: ERROR_TODOS_POST, payload: error.message });
     }
   };
 }
